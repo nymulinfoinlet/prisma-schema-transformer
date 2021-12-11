@@ -30,7 +30,8 @@
   "scripts": {
     "build": "rm -rf dist && tsc -p tscconfig.json",
     "test": "DATABASE_URL=postgresql://localhost:5432/prisma ava",
-    "lint": "xo --fix"
+    "lint": "xo --fix",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "@prisma/engine-core": "^3.2.1",

@@ -2,15 +2,13 @@
 
 **This is a temporary patch**
 
-You can looking for the source repository, may be it fixed issue:
-[IBM/prisma-schema-transformer: Prisma ORM schema post-processor.](https://github.com/IBM/prisma-schema-transformer)
+Patch for support prisma 3
 
-Only test on prisma 3.6.0
+You can look for the [source repository](https://github.com/IBM/prisma-schema-transformer), maybe it has a new release.
 
-Thank source repository contributors and Marc-Oros fork
-[Marc-Oros/prisma-schema-transformer: Prisma ORM schema post-processor.](https://github.com/Marc-Oros/prisma-schema-transformer)
+Test on Prisma 3.6.0 only
 
-HOW to use this patch?
+Thank source repository contributors and [Marc-Oros fork](https://github.com/Marc-Oros/prisma-schema-transformer)
 
 ## Install
 
@@ -49,6 +47,43 @@ transformer schema and migrate
 ```bash
 yarn migrate init
 ```
+
+## Example
+
+write `prisma/preSchema.prisma` with `snake_case`
+
+```prisma
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  id    Int     @default(autoincrement()) @id
+  email String  @unique
+  name  String?
+  hello_world  String?
+  posts post[]
+}
+
+model post {
+  id        Int      @default(autoincrement()) @id
+  title     String
+  content   String?
+  published Boolean? @default(false)
+  author    user?    @relation(fields: [author_id], references: [id])
+  author_id  Int?
+}
+```
+
+# Source content
 
 > **EXPERIMENTAL FOR PRISMA V3**
 

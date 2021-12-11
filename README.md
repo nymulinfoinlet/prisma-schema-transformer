@@ -25,7 +25,8 @@ yarn prisma-schema-transformer prisma/schema.prisma
 ## More about my solution
 
 Write a `prisma/preSchema.prisma` and add it to git
-add `prisma/schema.prisma` to `.gitignore`
+
+Add `prisma/schema.prisma` to `.gitignore`
 
 Add `package.json` scripts
 

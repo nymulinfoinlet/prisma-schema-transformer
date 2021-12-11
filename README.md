@@ -1,5 +1,55 @@
 # prisma-schema-transformer
 
+**This is a temporary patch**
+
+You can looking for the source repository, may be it fixed issue:
+[IBM/prisma-schema-transformer: Prisma ORM schema post-processor.](https://github.com/IBM/prisma-schema-transformer)
+
+Only test on prisma 3.6.0
+
+Thank source repository contributors and Marc-Oros fork
+[Marc-Oros/prisma-schema-transformer: Prisma ORM schema post-processor.](https://github.com/Marc-Oros/prisma-schema-transformer)
+
+HOW to use this patch?
+
+## Install
+
+```bash
+yarn add --dev https://github.com/allyusd/prisma-schema-transformer.git
+```
+
+## Usage
+
+```bash
+yarn prisma-schema-transformer prisma/schema.prisma
+```
+
+## More about my solution
+
+Write a `prisma/preSchema.prisma` and add it to git
+add `prisma/schema.prisma` to `.gitignore`
+
+Add `package.json` scripts
+
+```json
+  "scripts": {
+    "schema": "cp prisma/preSchema.prisma prisma/schema.prisma && yarn prisma-schema-transformer prisma/schema.prisma",
+    "migrate": "yarn schema && yarn prisma migrate dev --name"
+  }
+```
+
+transformer schema only
+
+```bash
+yarn schema
+```
+
+transformer schema and migrate
+
+```bash
+yarn migrate init
+```
+
 > **EXPERIMENTAL FOR PRISMA V3**
 
 This project utilizes the [getDMMF](https://github.com/prisma/prisma/blob/023249752380976d797518e1350199895246d099/src/packages/sdk/src/engineCommands.ts#L45) method from `@prisma/sdk` to perform some post-processing work on generated Prisma schema, including the following.

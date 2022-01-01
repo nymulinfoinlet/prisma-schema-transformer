@@ -52,20 +52,20 @@ const handlers = (type, kind) => {
 				return `@default(${value})`;
 			}
 
-			if (!value) {
-				return '';
-			}
-
-			if (typeof (value) === 'object') {
-				return `@default(${value.name}(${value.args}))`;
-			}
-
 			if (typeof (value) === 'number') {
 				return `@default(${value})`;
 			}
 
 			if (typeof (value) === 'string') {
 				return `@default("${value}")`;
+			}
+
+			if (!value) {
+				return '';
+			}
+
+			if (typeof (value) === 'object') {
+				return `@default(${value.name}(${value.args}))`;
 			}
 
 			throw new Error(`Unsupported field attribute ${value}`);

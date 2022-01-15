@@ -44,16 +44,17 @@ export interface Model extends DMMF.Model {
 const handlers = (type, kind) => {
 	return {
 		default: value => {
+      console.log(kind);
 			if (kind === 'enum') {
-				return `@default(${value})`;
+				return `@default("${value}")`;
 			}
 
 			if (type === 'Boolean') {
-				return `@default(${value})`;
+				return `@default("${value}")`;
 			}
 
 			if (typeof (value) === 'number') {
-				return `@default(${value})`;
+				return `@default("${value}")`;
 			}
 
 			if (typeof (value) === 'string') {
